@@ -14,7 +14,7 @@ public class MainFXML extends Application {
         Group root = new Group();
         Scene scene = new Scene(root, 500, 400);
 
-        Parent parent = FXMLLoader.load(getClass().getResource("firstfxml.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("/firstfxml.fxml"));
         BorderPane borderPane = new BorderPane();
         borderPane.setCenter(parent);
         root.getChildren().add(borderPane);

@@ -1,4 +1,4 @@
-package ru.smith;
+package ru.smith.firsttutorial;
 
 import com.aquafx_project.AquaFx;
 import javafx.application.Application;

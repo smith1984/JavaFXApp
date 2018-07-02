@@ -1,24 +1,24 @@
-package ru.smith;
+package ru.smith.firsttutorial;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-public class MainFXML extends Application {
+public class MainLayout extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Group root = new Group();
-        Scene scene = new Scene(root, 500, 400);
-
-        Parent parent = FXMLLoader.load(getClass().getResource("/firstfxml.fxml"));
         BorderPane borderPane = new BorderPane();
-        borderPane.setCenter(parent);
-        root.getChildren().add(borderPane);
+        borderPane.setMinSize(200, 150);
+        borderPane.setCenter(new Button("Press my"));
 
+        //root.getChildren().addAll(new Button("Press my"), new TextField("Бла бла бла"));
+        root.getChildren().add(borderPane);
+        Scene scene = new Scene(root, 500, 400);
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
         primaryStage.show();

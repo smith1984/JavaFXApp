@@ -1,4 +1,4 @@
-package ru.smith;
+package ru.smith.firsttutorial;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;

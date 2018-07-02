@@ -42,7 +42,7 @@
                             <arguments>
                                 <argument>-createjar</argument>
                                 <argument>-appclass</argument>
-                                <argument>ru.smith.Main</argument>
+                                <argument>ru.smith.firsttutorial.Main</argument>
                                 <argument>-srcdir</argument>
                                 <argument>
                                     ${project.build.directory}/classes

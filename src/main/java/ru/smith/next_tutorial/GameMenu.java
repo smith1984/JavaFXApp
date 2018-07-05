@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -131,7 +132,30 @@ public class GameMenu extends Application {
     }
 
     private static class MenuBox extends Pane{
+        static SubMenu subMenu;
+        public MenuBox(SubMenu subMenu){
+            MenuBox.subMenu = subMenu;
 
+            setVisible(false);
+            Rectangle bg = new Rectangle(900,600,Color.LIGHTBLUE);
+            bg.setOpacity(0.4);
+            getChildren().addAll(bg, subMenu);
+        }
+        public void setSubMenu(SubMenu subMenu){
+            getChildren().remove(MenuBox.subMenu);
+            MenuBox.subMenu = subMenu;
+            getChildren().add(MenuBox.subMenu);
+        }
     }
 
+    private static class SubMenu extends VBox {
+        public SubMenu(MenuItem...items){
+            setSpacing(15);
+            setTranslateY(100);
+            setTranslateX(50);
+            for(MenuItem item : items){
+                getChildren().addAll(item);
+            }
+        }
+    }
 }

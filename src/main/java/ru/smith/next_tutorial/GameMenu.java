@@ -21,116 +21,92 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class GameMenu extends Application {
-
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         Pane root = new Pane();
-        Image img = new Image(getClass().getResourceAsStream("/Castle.jpg"));
-        ImageView imageView = new ImageView(img);
-        imageView.setFitWidth(900);
-        imageView.setFitHeight(600);
-        root.getChildren().addAll(imageView);
+        Image image = new Image(getClass().getResourceAsStream("/Castle.jpg"));
+        ImageView img = new ImageView(image);
+        img.setFitHeight(600);
+        img.setFitWidth(900);
+        root.getChildren().add(img);
 
-        MenuItem newGame = new MenuItem("Новая игра");
-        MenuItem options = new MenuItem("Настройки");
-        MenuItem exitGame = new MenuItem("Выход");
-
-        SubMenu mainMenu = new SubMenu(newGame, options, exitGame);
-
-        MenuItem sound = new MenuItem("Звук");
-        MenuItem video = new MenuItem("Видео");
-        MenuItem keys = new MenuItem("Управление");
-        MenuItem optionsBack = new MenuItem("Назад");
-
-        SubMenu optionsMenu = new SubMenu(sound, video, keys, optionsBack);
-
-        MenuItem nG1 = new MenuItem("Турнир");
-        MenuItem nG2 = new MenuItem("Одиночный заезд");
-        MenuItem nG3 = new MenuItem("2 игрока");
-        MenuItem nGBack = new MenuItem("Назад");
-
-        SubMenu newGameMenu = new SubMenu(nG1, nG2, nG3, nGBack);
-
+        MenuItem newGame = new MenuItem("НОВАЯ ИГРА");
+        MenuItem options = new MenuItem("НАСТРОЙКИ");
+        MenuItem exitGame = new MenuItem("ВЫХОД");
+        SubMenu mainMenu = new SubMenu(
+                newGame,options,exitGame
+        );
+        MenuItem sound = new MenuItem("ЗВУК");
+        MenuItem video = new MenuItem("ВИДЕО");
+        MenuItem keys = new MenuItem("УПРАВЛЕНИЕ");
+        MenuItem optionsBack = new MenuItem("НАЗАД");
+        SubMenu optionsMenu = new SubMenu(
+                sound,video,keys,optionsBack
+        );
+        MenuItem NG1 = new MenuItem("ТУРНИР");
+        MenuItem NG2 = new MenuItem("ОДИН ЗАЕЗД");
+        MenuItem NG3 = new MenuItem("2 ИГРОКА");
+        MenuItem NG4 = new MenuItem("НАЗАД");
+        SubMenu newGameMenu = new SubMenu(
+                NG1,NG2,NG3,NG4
+        );
         MenuBox menuBox = new MenuBox(mainMenu);
 
-        newGame.setOnMouseClicked(e -> {
-            menuBox.setSubMenu(newGameMenu);
-        });
-        options.setOnMouseClicked(e -> {
-            menuBox.setSubMenu(optionsMenu);
-        });
-        exitGame.setOnMouseClicked(e -> {
-            System.exit(0);
-        });
-        options.setOnMouseClicked(e -> {
-            menuBox.setSubMenu(optionsMenu);
-        });
-        nGBack.setOnMouseClicked(e -> {
-            menuBox.setSubMenu(mainMenu);
-        });
-        optionsBack.setOnMouseClicked(e -> {
-            menuBox.setSubMenu(mainMenu);
-        });
-        root.getChildren().addAll(mainMenu);
+        newGame.setOnMouseClicked(event->menuBox.setSubMenu(newGameMenu));
+        options.setOnMouseClicked(event->menuBox.setSubMenu(optionsMenu));
+        exitGame.setOnMouseClicked(event-> System.exit(0));
+        optionsBack.setOnMouseClicked(event->menuBox.setSubMenu(mainMenu));
+        NG4.setOnMouseClicked(event-> menuBox.setSubMenu(mainMenu));
+        root.getChildren().addAll(menuBox);
 
-        Scene scene = new Scene(root, 900, 600);
+        Scene scene = new Scene(root,900,600);
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ESCAPE) {
-                FadeTransition ft = new FadeTransition(Duration.seconds(1), menuBox);
+                FadeTransition ft = new FadeTransition(Duration.seconds(1),menuBox);
                 if (!menuBox.isVisible()) {
                     ft.setFromValue(0);
                     ft.setToValue(1);
                     ft.play();
                     menuBox.setVisible(true);
-                } else {
+                }
+                else{
                     ft.setFromValue(1);
                     ft.setToValue(0);
+                    ft.setOnFinished(evt ->   menuBox.setVisible(false));
                     ft.play();
-                    ft.setOnFinished(event1 -> menuBox.setVisible(false));
 
                 }
             }
         });
-
-        primaryStage.setTitle("Game menu");
+        primaryStage.setTitle("Pause");
         primaryStage.setScene(scene);
         primaryStage.show();
-
     }
-
-    public static void main(String[] args) {
-        Application.launch(args);
-    }
-
-    private static class MenuItem extends StackPane {
-        MenuItem(String name) {
-            Rectangle bg = new Rectangle(200, 20, Color.WHITE);
+    private static class MenuItem extends StackPane{
+        public  MenuItem(String name){
+            Rectangle bg = new Rectangle(200,20,Color.WHITE);
             bg.setOpacity(0.5);
 
             Text text = new Text(name);
             text.setFill(Color.WHITE);
-            text.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+            text.setFont(Font.font("Arial",FontWeight.BOLD,14));
 
             setAlignment(Pos.CENTER);
-            getChildren().addAll(bg, text);
-            FillTransition fillTransition = new FillTransition(Duration.seconds(0.5), bg);
-
+            getChildren().addAll(bg,text);
+            FillTransition st = new FillTransition(Duration.seconds(0.5),bg);
             setOnMouseEntered(event -> {
-                fillTransition.setToValue(Color.DARKGOLDENROD);
-                fillTransition.setFromValue(Color.DARKGRAY);
-                fillTransition.setCycleCount(Animation.INDEFINITE);
-                fillTransition.setAutoReverse(true);
-                fillTransition.play();
+                st.setFromValue(Color.DARKGRAY);
+                st.setToValue(Color.DARKGOLDENROD);
+                st.setCycleCount(Animation.INDEFINITE);
+                st.setAutoReverse(true);
+                st.play();
             });
-
             setOnMouseExited(event -> {
-                fillTransition.stop();
+                st.stop();
                 bg.setFill(Color.WHITE);
             });
         }
-
     }
-
     private static class MenuBox extends Pane{
         static SubMenu subMenu;
         public MenuBox(SubMenu subMenu){
@@ -148,7 +124,7 @@ public class GameMenu extends Application {
         }
     }
 
-    private static class SubMenu extends VBox {
+    private static class SubMenu extends VBox{
         public SubMenu(MenuItem...items){
             setSpacing(15);
             setTranslateY(100);

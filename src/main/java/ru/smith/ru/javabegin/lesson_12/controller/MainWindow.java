@@ -1,5 +1,6 @@
 package ru.smith.ru.javabegin.lesson_12.controller;
 
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,42 +8,72 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import lombok.Getter;
+
+import ru.smith.ru.javabegin.lesson_12.interfaces.impls.CollectionAddressBook;
+import ru.smith.ru.javabegin.lesson_12.objects.Person;
+
 import java.io.IOException;
 
+@Getter
 public class MainWindow {
 
-    @FXML
-    TableColumn tableColumnPhone;
+    private CollectionAddressBook collectionAddressBook = new CollectionAddressBook();
 
     @FXML
-    TableColumn tableColumnName;
+    private Button addButton;
 
     @FXML
-    Button addButton;
+    private Button editButton;
 
     @FXML
-    Button editButton;
+    private Button delButton;
 
     @FXML
-    Button delButton;
+    private Label label;
 
     @FXML
-    Label label;
+    private TableView table;
 
     @FXML
-    TableView<String> table;
+    private TableColumn<Person, String> nameTableColumn;
 
     @FXML
-    Button searchButton;
+    private TableColumn<Person, String> lastNameTableColumn;
 
     @FXML
-    TextField searchTextField;
+    private TableColumn<Person, String> nameFatherTableColumn;
+
+    @FXML
+    private TableColumn<Person, String> phoneTableColumn;
+
+    @FXML
+    private Button searchButton;
+
+    @FXML
+    private TextField searchTextField;
+
+    @FXML
+    private void initialize(){
+        nameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        lastNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        nameFatherTableColumn.setCellValueFactory(new PropertyValueFactory<>("nameFather"));
+        phoneTableColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
 
 
+        collectionAddressBook.getPersonArrayList().addListener((ListChangeListener) c -> updateCountLabel());
 
+        collectionAddressBook.fillData();
+        table.setItems(collectionAddressBook.getPersonArrayList());
+    }
+
+    private void updateCountLabel(){
+        label.setText("Количество записей: " + collectionAddressBook.getPersonArrayList().size());
+    }
     public void showDialog (ActionEvent actionEvent){
         try {
         Parent root = FXMLLoader.load(getClass().getResource("/ru/javabegin/lesson_12/second_window.fxml"));

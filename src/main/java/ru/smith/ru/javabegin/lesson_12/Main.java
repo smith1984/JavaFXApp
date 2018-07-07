@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/ru/javabegin/lesson_12/main_window.fxml"));
         primaryStage.setTitle("Телефонный справочник");
         Scene scene = new Scene(root, 330, 300);
@@ -17,9 +17,9 @@ public class Main extends Application {
         primaryStage.setMinWidth(330);
         primaryStage.setMinHeight(330);
         primaryStage.setScene(scene);
-        //primaryStage.setResizable(false);
         primaryStage.show();
     }
+
 
 
     public static void main(String[] args) {

@@ -13,6 +13,11 @@
             <artifactId>aquafx</artifactId>
             <version>0.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -25,41 +30,41 @@
                     <target>10</target>
                 </configuration>
             </plugin>
-     <!--    <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>package-jar</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>
-                                ${env.JAVA_HOME}/bin/javapackager
-                            </executable>
-                            <arguments>
-                                <argument>-createjar</argument>
-                                <argument>-appclass</argument>
-                                <argument>ru.smith.firsttutorial.Main</argument>
-                                <argument>-srcdir</argument>
-                                <argument>
-                                    ${project.build.directory}/classes
-                                </argument>
-                                <argument>-outdir</argument>
-                                <argument>./target</argument>
-                                <argument>-outfile</argument>
-                                <argument>
-                                    ${project.artifactId}-app
-                                </argument>
-                                <argument>-v</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
+            <!--    <plugin>
+                       <groupId>org.codehaus.mojo</groupId>
+                       <artifactId>exec-maven-plugin</artifactId>
+                       <executions>
+                           <execution>
+                               <id>package-jar</id>
+                               <phase>package</phase>
+                               <goals>
+                                   <goal>exec</goal>
+                               </goals>
+                               <configuration>
+                                   <executable>
+                                       ${env.JAVA_HOME}/bin/javapackager
+                                   </executable>
+                                   <arguments>
+                                       <argument>-createjar</argument>
+                                       <argument>-appclass</argument>
+                                       <argument>ru.smith.firsttutorial.Main</argument>
+                                       <argument>-srcdir</argument>
+                                       <argument>
+                                           ${project.build.directory}/classes
+                                       </argument>
+                                       <argument>-outdir</argument>
+                                       <argument>./target</argument>
+                                       <argument>-outfile</argument>
+                                       <argument>
+                                           ${project.artifactId}-app
+                                       </argument>
+                                       <argument>-v</argument>
+                                   </arguments>
+                               </configuration>
+                           </execution>
 
-                </executions>
-            </plugin> -->
+                       </executions>
+                   </plugin> -->
         </plugins>
     </build>
 

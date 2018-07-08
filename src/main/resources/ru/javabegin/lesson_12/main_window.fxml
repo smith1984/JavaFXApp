@@ -6,9 +6,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import org.controlsfx.control.textfield.CustomTextField?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.smith.ru.javabegin.lesson_12.controller.MainWindow">
    <children>
@@ -16,8 +16,8 @@
          <children>
             <AnchorPane>
                <children>
-                  <TextField fx:id="searchTextField" alignment="TOP_LEFT" promptText="Введите ФИО или телефон" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="70.0" />
-                  <Button fx:id="searchButton" alignment="CENTER" contentDisplay="CENTER" layoutX="171.0" mnemonicParsing="false" text="Поиск" AnchorPane.rightAnchor="0.0" />
+                  <CustomTextField fx:id="searchTextField" onAction="#actionSearch" promptText="%promtTextSearch" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="80.0" />
+                  <Button fx:id="searchButton" alignment="CENTER" contentDisplay="CENTER" layoutX="171.0" mnemonicParsing="false" onAction="#actionSearch" text="%search" AnchorPane.rightAnchor="0.0" />
                </children>
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -27,10 +27,10 @@
                <children>
                   <TableView fx:id="table" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                        <TableColumn fx:id="lastNameTableColumn" prefWidth="75.0" text="Фамилия" />
-                        <TableColumn fx:id="nameTableColumn" prefWidth="75.0" text="Имя" />
-                      <TableColumn fx:id="nameFatherTableColumn" prefWidth="75.0" text="Отчество" />
-                      <TableColumn fx:id="phoneTableColumn" prefWidth="75.0" text="Телефон" />
+                        <TableColumn fx:id="lastNameTableColumn" prefWidth="75.0" text="%lastName" />
+                        <TableColumn fx:id="nameTableColumn" prefWidth="75.0" text="%name" />
+                      <TableColumn fx:id="nameFatherTableColumn" prefWidth="75.0" text="%nameFather" />
+                      <TableColumn fx:id="phoneTableColumn" prefWidth="75.0" text="%phone" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -40,7 +40,7 @@
             </AnchorPane>
             <AnchorPane>
                <children>
-                  <Label fx:id="label" alignment="TOP_LEFT" contentDisplay="TOP" text="Количество записей:" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                  <Label fx:id="label" alignment="TOP_LEFT" contentDisplay="TOP" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
@@ -51,9 +51,9 @@
                <children>
                   <ButtonBar AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                     <buttons>
-                      <Button fx:id="addButton" mnemonicParsing="false" onAction="#showDialog" text="Добавить" />
-                        <Button fx:id="editButton" mnemonicParsing="false" onAction="#showDialog" text="Изменить" />
-                        <Button fx:id="delButton" mnemonicParsing="false" text="Удалить" />
+                      <Button fx:id="addButton" mnemonicParsing="false" onAction="#actionButtonClicked" text="%add" />
+                        <Button fx:id="editButton" defaultButton="true" mnemonicParsing="false" onAction="#actionButtonClicked" text="%edit" />
+                        <Button fx:id="delButton" mnemonicParsing="false" onAction="#actionButtonClicked" text="%del" />
                     </buttons>
                   </ButtonBar>
                </children>

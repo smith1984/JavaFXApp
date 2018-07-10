@@ -12,6 +12,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().
                 getResource("/ru/smith/jirnitonijfx/main_table_view.fxml"));
         primaryStage.setScene(new Scene(root));
+        primaryStage.setTitle("TableView");
         primaryStage.show();
     }
 
